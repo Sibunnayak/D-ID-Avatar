@@ -27,8 +27,8 @@ function App() {
   let lastBytesReceived;
   let agentId;
   //API to get agent id and chat id
-  agentId = "agt_wcaSfJd_";
-  chatId = "cht_qm5Dr1USAIgBsnvJqv0uk";
+  agentId = "agt_P4_VLVqW";
+  chatId = "cht_KVRC30_a9T5vzms1lTeEv";
   // agentId = process.env.AGENT_ID;
   // chatId = process.env.CHAT_ID;
 
@@ -222,6 +222,7 @@ function App() {
       console.log("datachannel open");
       setDataChannel(true);
       setStatus("Ready");
+      setShowConnect(true);
       // setShowConnect(true);
     };
     let decodedMsg;
@@ -246,6 +247,7 @@ function App() {
       console.log("datachannel close");
       setDataChannel(false);
       setStatus("Disconnected");
+      setShowConnect(false);
     };
     return sessionClientAnswer;
   };
@@ -300,9 +302,9 @@ function App() {
   //Show's Peerconnection Status (Note :Do not Change Logic !!!!!!)
   function onConnectionStateChange() {
     console.log("peerConnectionState-", peerConnection.connectionState);
-    setShowConnect(
-      peerConnection.connectionState === "connected" ? true : false
-    );
+    // setShowConnect(
+    //   peerConnection.connectionState === "connected" ? true : false
+    // );//setstatus change 
     if (peerConnection.connectionState === "disconnected") {
       stopAllStreams();
       closePC();
@@ -498,7 +500,7 @@ function App() {
         `${DID_API.url}/${DID_API.service}/streams`,
         {
           source_url:
-            "s3://d-id-create-images-prod/auth0|65f27818321a28f17522450e/upl_GL2OvCxaH1nDBW3yisVem/image.jpeg",
+            "https://create-images-results.d-id.com/auth0|65f80bd2c0912636c1e148fc/upl_6j9Zs-m6TcdEINT-lPfbq/image.jpeg",
         },
         {
           headers: {
